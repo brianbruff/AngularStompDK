@@ -4,10 +4,102 @@
 
 !function(e){function r(e,r,o){return 4===arguments.length?t.apply(this,arguments):void n(e,{declarative:!0,deps:r,declare:o})}function t(e,r,t,o){n(e,{declarative:!1,deps:r,executingRequire:t,execute:o})}function n(e,r){r.name=e,e in p||(p[e]=r),r.normalizedDeps=r.deps}function o(e,r){if(r[e.groupIndex]=r[e.groupIndex]||[],-1==v.call(r[e.groupIndex],e)){r[e.groupIndex].push(e);for(var t=0,n=e.normalizedDeps.length;n>t;t++){var a=e.normalizedDeps[t],u=p[a];if(u&&!u.evaluated){var d=e.groupIndex+(u.declarative!=e.declarative);if(void 0===u.groupIndex||u.groupIndex<d){if(void 0!==u.groupIndex&&(r[u.groupIndex].splice(v.call(r[u.groupIndex],u),1),0==r[u.groupIndex].length))throw new TypeError("Mixed dependency cycle detected");u.groupIndex=d}o(u,r)}}}}function a(e){var r=p[e];r.groupIndex=0;var t=[];o(r,t);for(var n=!!r.declarative==t.length%2,a=t.length-1;a>=0;a--){for(var u=t[a],i=0;i<u.length;i++){var s=u[i];n?d(s):l(s)}n=!n}}function u(e){return x[e]||(x[e]={name:e,dependencies:[],exports:{},importers:[]})}function d(r){if(!r.module){var t=r.module=u(r.name),n=r.module.exports,o=r.declare.call(e,function(e,r){if(t.locked=!0,"object"==typeof e)for(var o in e)n[o]=e[o];else n[e]=r;for(var a=0,u=t.importers.length;u>a;a++){var d=t.importers[a];if(!d.locked)for(var i=0;i<d.dependencies.length;++i)d.dependencies[i]===t&&d.setters[i](n)}return t.locked=!1,r},r.name);t.setters=o.setters,t.execute=o.execute;for(var a=0,i=r.normalizedDeps.length;i>a;a++){var l,s=r.normalizedDeps[a],c=p[s],v=x[s];v?l=v.exports:c&&!c.declarative?l=c.esModule:c?(d(c),v=c.module,l=v.exports):l=f(s),v&&v.importers?(v.importers.push(t),t.dependencies.push(v)):t.dependencies.push(null),t.setters[a]&&t.setters[a](l)}}}function i(e){var r,t=p[e];if(t)t.declarative?c(e,[]):t.evaluated||l(t),r=t.module.exports;else if(r=f(e),!r)throw new Error("Unable to load dependency "+e+".");return(!t||t.declarative)&&r&&r.__useDefault?r["default"]:r}function l(r){if(!r.module){var t={},n=r.module={exports:t,id:r.name};if(!r.executingRequire)for(var o=0,a=r.normalizedDeps.length;a>o;o++){var u=r.normalizedDeps[o],d=p[u];d&&l(d)}r.evaluated=!0;var c=r.execute.call(e,function(e){for(var t=0,n=r.deps.length;n>t;t++)if(r.deps[t]==e)return i(r.normalizedDeps[t]);throw new TypeError("Module "+e+" not declared as a dependency.")},t,n);c&&(n.exports=c),t=n.exports,t&&t.__esModule?r.esModule=t:r.esModule=s(t)}}function s(r){if(r===e)return r;var t={};if("object"==typeof r||"function"==typeof r)if(g){var n;for(var o in r)(n=Object.getOwnPropertyDescriptor(r,o))&&h(t,o,n)}else{var a=r&&r.hasOwnProperty;for(var o in r)(!a||r.hasOwnProperty(o))&&(t[o]=r[o])}return t["default"]=r,h(t,"__useDefault",{value:!0}),t}function c(r,t){var n=p[r];if(n&&!n.evaluated&&n.declarative){t.push(r);for(var o=0,a=n.normalizedDeps.length;a>o;o++){var u=n.normalizedDeps[o];-1==v.call(t,u)&&(p[u]?c(u,t):f(u))}n.evaluated||(n.evaluated=!0,n.module.execute.call(e))}}function f(e){if(D[e])return D[e];if("@node/"==e.substr(0,6))return y(e.substr(6));var r=p[e];if(!r)throw"Module "+e+" not present.";return a(e),c(e,[]),p[e]=void 0,r.declarative&&h(r.module.exports,"__esModule",{value:!0}),D[e]=r.declarative?r.module.exports:r.esModule}var p={},v=Array.prototype.indexOf||function(e){for(var r=0,t=this.length;t>r;r++)if(this[r]===e)return r;return-1},g=!0;try{Object.getOwnPropertyDescriptor({a:0},"a")}catch(m){g=!1}var h;!function(){try{Object.defineProperty({},"a",{})&&(h=Object.defineProperty)}catch(e){h=function(e,r,t){try{e[r]=t.value||t.get.call(e)}catch(n){}}}}();var x={},y="undefined"!=typeof System&&System._nodeRequire||"undefined"!=typeof require&&require.resolve&&"undefined"!=typeof process&&require,D={"@empty":{}};return function(e,n,o){return function(a){a(function(a){for(var u={_nodeRequire:y,register:r,registerDynamic:t,get:f,set:function(e,r){D[e]=r},newModule:function(e){return e}},d=0;d<n.length;d++)(function(e,r){r&&r.__esModule?D[e]=r:D[e]=s(r)})(n[d],arguments[d]);o(u);var i=f(e[0]);if(e.length>1)for(var d=1;d<e.length;d++)f(e[d]);return i.__useDefault?i["default"]:i})}}}("undefined"!=typeof self?self:global)
 
-(["1"], ["9","c"], function($__System) {
+(["1"], ["b","d"], function($__System) {
 
 !function(){var t=$__System;if("undefined"!=typeof window&&"undefined"!=typeof document&&window.location)var s=location.protocol+"//"+location.hostname+(location.port?":"+location.port:"");t.set("@@cjs-helpers",t.newModule({getPathVars:function(t){var n,o=t.lastIndexOf("!");n=-1!=o?t.substr(0,o):t;var e=n.split("/");return e.pop(),e=e.join("/"),"file:///"==n.substr(0,8)?(n=n.substr(7),e=e.substr(7),isWindows&&(n=n.substr(1),e=e.substr(1))):s&&n.substr(0,s.length)===s&&(n=n.substr(s.length),e=e.substr(s.length)),{filename:n,dirname:e}}}))}();
-$__System.registerDynamic("2", [], true, function($__require, exports, module) {
+$__System.register("2", ["3", "4", "5"], function (_export) {
+    var ngStompWebSocket, _createClass, _classCallCheck, ngstompProvider;
+
+    return {
+        setters: [function (_3) {
+            ngStompWebSocket = _3["default"];
+        }, function (_) {
+            _createClass = _["default"];
+        }, function (_2) {
+            _classCallCheck = _2["default"];
+        }],
+        execute: function () {
+            "use strict";
+
+            ngstompProvider = (function () {
+                function ngstompProvider() {
+                    _classCallCheck(this, ngstompProvider);
+
+                    this.settings = {
+                        timeOut: 5000,
+                        heartbeat: {
+                            outgoing: 10000,
+                            incoming: 10000
+                        }
+                    };
+                }
+
+                _createClass(ngstompProvider, [{
+                    key: "credential",
+                    value: function credential(login, password) {
+                        this.settings.login = login;
+                        this.settings.password = password;
+                        return this;
+                    }
+                }, {
+                    key: "url",
+                    value: function url(_url) {
+                        this.settings.url = _url;
+                        return this;
+                    }
+                }, {
+                    key: "class",
+                    value: function _class(clazz) {
+                        this.settings["class"] = clazz;
+                        return this;
+                    }
+                }, {
+                    key: "setting",
+                    value: function setting(settingsObject) {
+                        this.settings = settingsObject;
+                        return this;
+                    }
+                }, {
+                    key: "debug",
+                    value: function debug(boolean) {
+                        this.settings.debug = boolean;
+                        return this;
+                    }
+                }, {
+                    key: "vhost",
+                    value: function vhost(host) {
+                        this.settings.vhost = host;
+                        return this;
+                    }
+                }, {
+                    key: "reconnectAfter",
+                    value: function reconnectAfter(numberInSeconds) {
+                        this.settings.timeOut = numberInSeconds * 1000;
+                        return this;
+                    }
+                }, {
+                    key: "heartbeat",
+                    value: function heartbeat(outgoing, incoming) {
+                        this.settings.heartbeat.outgoing = outgoing;
+                        this.settings.heartbeat.incoming = incoming;
+                        return this;
+                    }
+                }, {
+                    key: "$get",
+                    value: ["$q", "$log", "$rootScope", "$timeout", "Stomp", function $get($q, $log, $rootScope, $timeout, Stomp) {
+                        "ngInject";
+                        return new ngStompWebSocket(this.settings, $q, $log, $rootScope, $timeout, Stomp);
+                    }]
+                }]);
+
+                return ngstompProvider;
+            })();
+
+            _export("default", ngstompProvider);
+        }
+    };
+});
+$__System.registerDynamic("6", [], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -29,12 +121,12 @@ $__System.registerDynamic("2", [], true, function($__require, exports, module) {
   return module.exports;
 });
 
-$__System.registerDynamic("3", ["2"], true, function($__require, exports, module) {
+$__System.registerDynamic("7", ["6"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
   global.define = undefined;
-  var $ = $__require('2');
+  var $ = $__require('6');
   module.exports = function defineProperty(it, key, desc) {
     return $.setDesc(it, key, desc);
   };
@@ -42,26 +134,26 @@ $__System.registerDynamic("3", ["2"], true, function($__require, exports, module
   return module.exports;
 });
 
-$__System.registerDynamic("4", ["3"], true, function($__require, exports, module) {
+$__System.registerDynamic("8", ["7"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
   global.define = undefined;
   module.exports = {
-    "default": $__require('3'),
+    "default": $__require('7'),
     __esModule: true
   };
   global.define = __define;
   return module.exports;
 });
 
-$__System.registerDynamic("5", ["4"], true, function($__require, exports, module) {
+$__System.registerDynamic("4", ["8"], true, function($__require, exports, module) {
   "use strict";
   ;
   var global = this,
       __define = global.define;
   global.define = undefined;
-  var _Object$defineProperty = $__require('4')["default"];
+  var _Object$defineProperty = $__require('8')["default"];
   exports["default"] = (function() {
     function defineProperties(target, props) {
       for (var i = 0; i < props.length; i++) {
@@ -86,7 +178,7 @@ $__System.registerDynamic("5", ["4"], true, function($__require, exports, module
   return module.exports;
 });
 
-$__System.registerDynamic("6", [], true, function($__require, exports, module) {
+$__System.registerDynamic("5", [], true, function($__require, exports, module) {
   "use strict";
   ;
   var global = this,
@@ -102,7 +194,7 @@ $__System.registerDynamic("6", [], true, function($__require, exports, module) {
   return module.exports;
 });
 
-$__System.register("7", ["5", "6"], function (_export) {
+$__System.register("9", ["4", "5"], function (_export) {
     var _createClass, _classCallCheck, Unsubscriber;
 
     return {
@@ -180,7 +272,7 @@ $__System.register("7", ["5", "6"], function (_export) {
         }
     };
 });
-$__System.register('8', ['5', '6', '7', '9'], function (_export) {
+$__System.register('a', ['4', '5', '9', 'b'], function (_export) {
     var _createClass, _classCallCheck, UnSubscriber, angular, SubscribeBuilder;
 
     return {
@@ -190,8 +282,8 @@ $__System.register('8', ['5', '6', '7', '9'], function (_export) {
             _classCallCheck = _2['default'];
         }, function (_3) {
             UnSubscriber = _3['default'];
-        }, function (_4) {
-            angular = _4['default'];
+        }, function (_b) {
+            angular = _b['default'];
         }],
         execute: function () {
             /**
@@ -278,7 +370,7 @@ $__System.register('8', ['5', '6', '7', '9'], function (_export) {
         }
     };
 });
-$__System.register('a', ['5', '6', '8', '9'], function (_export) {
+$__System.register('3', ['4', '5', 'a', 'b'], function (_export) {
     var _createClass, _classCallCheck, SubscribeBuilder, angular, ngStompWebSocket;
 
     return {
@@ -286,10 +378,10 @@ $__System.register('a', ['5', '6', '8', '9'], function (_export) {
             _createClass = _['default'];
         }, function (_2) {
             _classCallCheck = _2['default'];
-        }, function (_3) {
-            SubscribeBuilder = _3['default'];
-        }, function (_4) {
-            angular = _4['default'];
+        }, function (_a) {
+            SubscribeBuilder = _a['default'];
+        }, function (_b) {
+            angular = _b['default'];
         }],
         execute: function () {
             /**
@@ -492,23 +584,32 @@ $__System.register('a', ['5', '6', '8', '9'], function (_export) {
         }
     };
 });
-$__System.register("b", ["5", "6", "a"], function (_export) {
-    var _createClass, _classCallCheck, ngStompWebSocket, ngstompProvider;
+$__System.register("c", ["3", "4", "5"], function (_export) {
+    var ngStompWebSocket, _createClass, _classCallCheck, ngstompService;
 
     return {
-        setters: [function (_) {
+        setters: [function (_3) {
+            ngStompWebSocket = _3["default"];
+        }, function (_) {
             _createClass = _["default"];
         }, function (_2) {
             _classCallCheck = _2["default"];
-        }, function (_a) {
-            ngStompWebSocket = _a["default"];
         }],
         execute: function () {
             "use strict";
 
-            ngstompProvider = (function () {
-                function ngstompProvider() {
-                    _classCallCheck(this, ngstompProvider);
+            ngstompService = (function () {
+                ngstompService.$inject = ["$q", "$log", "$rootScope", "$timeout", "Stomp"];
+                function ngstompService($q, $log, $rootScope, $timeout, Stomp) {
+                    "ngInject";
+
+                    _classCallCheck(this, ngstompService);
+
+                    this.$q = $q;
+                    this.$log = $log;
+                    this.$rootScope = $rootScope;
+                    this.$timeout = $timeout;
+                    this.Stomp = Stomp;
 
                     this.settings = {
                         timeOut: 5000,
@@ -519,7 +620,7 @@ $__System.register("b", ["5", "6", "a"], function (_export) {
                     };
                 }
 
-                _createClass(ngstompProvider, [{
+                _createClass(ngstompService, [{
                     key: "credential",
                     value: function credential(login, password) {
                         this.settings.login = login;
@@ -570,36 +671,35 @@ $__System.register("b", ["5", "6", "a"], function (_export) {
                         return this;
                     }
                 }, {
-                    key: "$get",
-                    value: ["$q", "$log", "$rootScope", "$timeout", "Stomp", function $get($q, $log, $rootScope, $timeout, Stomp) {
-                        "ngInject";
-                        return new ngStompWebSocket(this.settings, $q, $log, $rootScope, $timeout, Stomp);
-                    }]
+                    key: "get",
+                    value: function get() {
+                        return new ngStompWebSocket(this.settings, this.$q, this.$log, this.$rootScope, this.$timeout, this.Stomp);
+                    }
                 }]);
 
-                return ngstompProvider;
+                return ngstompService;
             })();
 
-            _export("default", ngstompProvider);
+            _export("default", ngstompService);
         }
     };
 });
-$__System.register('1', ['9', 'c', 'b'], function (_export) {
+$__System.register('1', ['2', 'b', 'd', 'c'], function (_export) {
     'use strict';
 
-    var angular, Stomp, ngstompProvider;
+    var ngstompProvider, angular, Stomp, ngStompService;
     return {
         setters: [function (_) {
-            angular = _['default'];
-        }, function (_c) {
-            Stomp = _c['default'];
+            ngstompProvider = _['default'];
         }, function (_b) {
-            ngstompProvider = _b['default'];
+            angular = _b['default'];
+        }, function (_d) {
+            Stomp = _d['default'];
+        }, function (_c) {
+            ngStompService = _c['default'];
         }],
         execute: function () {
-            _export('default', angular.module('AngularStompDK', []).provider('ngstomp', ngstompProvider)
-            //.provider('ngstomp2', ngstompProvider)
-            .constant('Stomp', Stomp));
+            _export('default', angular.module('AngularStompDK', []).provider('ngstomp', ngstompProvider).service('ngStompService', ngStompService).constant('Stomp', Stomp));
         }
     };
 });

@@ -4,3 +4,5 @@
 node*/
 /reports
 coverage
+bower_components/
+sample/
